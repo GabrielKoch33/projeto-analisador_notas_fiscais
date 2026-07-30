@@ -1,0 +1,43 @@
+SCANNEIA NOTAS
+
+- O sistema vai aceitar a entrada de PDFs ou JPGs.
+
+- O sistema vai vasculhar as subpastas automaticamente.
+
+- O sistema vai ter uma interface gráfica e ser '.exe'.
+
+- O sistema vai aceitar dois caminhos;
+				1 -> Caminho onde vai buscar os arquivos para leitura 
+				2 -> Caminho onde vai salvar os arquivos renomeados
+
+- O sistema vai ler os documentos e encontrar esses campos:
+				1 -> CNPJ
+                2 -> RAZÃO SOCIAL ou NOME FANTASIA ou NOME
+                3 -> Nº NOTA
+                ** caso não encontre algum desses campos o mesmo será renomeado para 'unknown' **
+                resultado == 86731494000108-empresa-gabriel-12443.pdf   sucesso
+                resultado == unknown-empresa-gabriel-12443.pdf          sem cnpj  
+                resultado == 86731494000108-unknown-12443.pdf           sem razão
+                resultado == 86731494000108-empresa-gabriel-unknown.pdf sem numero nota
+
+- PDF -> sim -> OCR
+      -> não -> Converte para PDF -> OCR
+
+- O sistema vai, conforme analisa as notas, emitir logs no terminal:
+    TOTAL DE ARQUIVOS ANALISADOS: 8000
+    SUCESSO: 7950
+    ERRO: 50
+
+    -> essa tabela existirá para arquivos nos quais houve falhas
+    ARQUIVO ORIGINAL | NOVO ARQUIVO |
+
+    - arquivos nos quais a extração falhou devem ir para uma pasta chamada ../erros
+    - talvez pintar o texto com cores VERDE e VERMELHO a depender do sucesso 
+
+- FERRAMENTAS
+    -> interface: Tkinter
+    -> OCR: PaddleOCR
+    -> PDF: pdf2image | pypdf
+    -> Converter JPG p/ PDF: Pillow
+    -> Criação PDF: img2pdf
+    -> Regex: localizar CPNJ e NF
