@@ -4,3 +4,9 @@
 # Manipular PDFs = pypdf ou PyMuPDF
 # Interface = Tkinter ; .exe = PyInstaller 
 
+import os
+
+caminho = "C:\\Users\Terminal\Desktop\pessoal\pastas_nota_projeto\Caixa-1"
+
+for arquivo in caminho:
+    print(arquivo)
