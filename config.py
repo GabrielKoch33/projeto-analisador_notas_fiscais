@@ -1,12 +1,9 @@
-# OCR (ler texto de imagem/PDF escaneado) = pytesseract	= Instalar o Tesseract-OCR (binário .exe, não é só pip)
-# PDF para imagem para o OCR ler = pdf2image = 	Instalar o Poppler for Windows e apontar o caminho do bin
-# Abrir/Gerar PDF de JPG = Pillow
-# Manipular PDFs = pypdf ou PyMuPDF
-# Interface = Tkinter ; .exe = PyInstaller 
+"""
+Responsável por:
 
-import os
+    ler o config.json
 
-caminho = "C:\\Users\Terminal\Desktop\pessoal\pastas_nota_projeto\Caixa-1"
-
-for arquivo in caminho:
-    print(arquivo)
+    salvar alterações
+    
+    criar o arquivo caso ele não exista
+"""

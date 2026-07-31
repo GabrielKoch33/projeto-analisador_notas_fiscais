@@ -1,43 +1,91 @@
 SCANNEIA NOTAS
 
-- O sistema vai aceitar a entrada de PDFs ou JPGs.
+    Selecionar Pasta
 
-- O sistema vai vasculhar as subpastas automaticamente.
+    ↓
 
-- O sistema vai ter uma interface gráfica e ser '.exe'.
+    Percorrer pasta e subpastas
 
-- O sistema vai aceitar dois caminhos;
-				1 -> Caminho onde vai buscar os arquivos para leitura 
-				2 -> Caminho onde vai salvar os arquivos renomeados
+    ↓
 
-- O sistema vai ler os documentos e encontrar esses campos:
-				1 -> CNPJ
-                2 -> RAZÃO SOCIAL ou NOME FANTASIA ou NOME
-                3 -> Nº NOTA
-                ** caso não encontre algum desses campos o mesmo será renomeado para 'unknown' **
-                resultado == 86731494000108-empresa-gabriel-12443.pdf   sucesso
-                resultado == unknown-empresa-gabriel-12443.pdf          sem cnpj  
-                resultado == 86731494000108-unknown-12443.pdf           sem razão
-                resultado == 86731494000108-empresa-gabriel-unknown.pdf sem numero nota
+    Encontrar arquivos
 
-- PDF -> sim -> OCR
-      -> não -> Converte para PDF -> OCR
+    ↓
 
-- O sistema vai, conforme analisa as notas, emitir logs no terminal:
-    TOTAL DE ARQUIVOS ANALISADOS: 8000
-    SUCESSO: 7950
-    ERRO: 50
+    PDF?
+            Sim → OCR
 
-    -> essa tabela existirá para arquivos nos quais houve falhas
-    ARQUIVO ORIGINAL | NOVO ARQUIVO |
+    JPG?
+            Sim → Converter PDF → OCR
 
-    - arquivos nos quais a extração falhou devem ir para uma pasta chamada ../erros
-    - talvez pintar o texto com cores VERDE e VERMELHO a depender do sucesso 
+    ↓
 
-- FERRAMENTAS
-    -> interface: Tkinter
-    -> OCR: PaddleOCR
-    -> PDF: pdf2image | pypdf
-    -> Converter JPG p/ PDF: Pillow
-    -> Criação PDF: img2pdf
-    -> Regex: localizar CPNJ e NF
+    Extrair texto
+
+    ↓
+
+    Encontrar
+
+    • CNPJ
+    • Razão Social
+    • Número da Nota
+
+    ↓
+
+    Encontrou tudo?
+
+    Sim
+            ↓
+
+    Renomear arquivo
+
+    Nao
+
+    Mover para
+    Erros
+
+- Interface
+    Tkinter
+
+- OCR
+    PaddleOCR
+
+- PDFs digitalizados 
+    pdf2image
+
+- JPG 
+    OCR -> texto -> Converter PDF -> Renomear -> Salvar
+
+- Extração dos dados
+    OCR -> texto -> ReGex (ex: "\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2}")
+
+- Duplicados
+    86731494000108-INFODIGITAL-123552#1.pdf
+    86731494000108-INFODIGITAL-123552#2.pdf
+    
+- Erros
+    Criada automaticamente dentro da pasta selecionada
+    Biblioteca shutil
+
+- JPG -> PDF
+    img2pdf ou Pillow
+
+- Leitura de subpastas
+    os.walk()
+
+- exe
+    PyInstaller
+---------------------------------------------------------------------------
+| Biblioteca  |	Finalidade                                                |
+---------------------------------------------------------------------------
+| PaddleOCR   |	Converter páginas de PDF em imagens                       |
+| Pillow	  |   Manipulação de imagens e conversão JPG→PDF              |
+| pypdf       |	Leitura de PDFs quando necessário                         |
+| OpenCV      |	Pré-processamento de imagens para melhorar o OCR          |
+| regex       |   (re)	Extração de CNPJ, número da nota e outros campos  |
+| unidecode   |	Remover acentos da razão social                           |
+| tkinter     |	Interface gráfica                                         |      
+| pathlib     |	Manipulação de arquivos e diretórios                      |
+| shutil      |	Movimentação de arquivos para a pasta Erros               |
+| PyInstaller |	Geração do executável                                     |
+---------------------------------------------------------------------------
