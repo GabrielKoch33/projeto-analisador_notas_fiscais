@@ -6,7 +6,7 @@ def leitor_pdf(objeto_nota: Nota) -> Nota:
     """
     Responsável por abrir PDFs.
 
-    Vai receber uma lista de objetos, cada objeto representará um arquivo analisado pelo scanner
+    Vai receber um objetos, cada objeto representará um arquivo analisado pelo scanner
     Nesse caso será apenas para PDFs, mas há o módulo 'leitor_img' que se encarregará de analisar JPG ou JPEG
 
     Analisa uma Nota -> Abre o PDF -> Converte cada página com o PyMuPDF -> Armazena em Nota.imagens_paginas -> Retorna Nota atualizada
@@ -15,7 +15,6 @@ def leitor_pdf(objeto_nota: Nota) -> Nota:
         raise TypeError("[ERRO] O Arquivo não é do tipo PDF")
 
     # Abre o PDF
-    print('Teste')
     with pymupdf.open(objeto_nota.arquivo_original) as pdf:
         # pdf é um objeto da classe Document, o qual contem todas as páginas do arquivo original
         for index_pagina in range(pdf.page_count):

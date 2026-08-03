@@ -66,6 +66,7 @@ if __name__ == '__main__':
         elif nota.tipo in {".jpg",".jpeg"}:
             leitor_img(nota)
 
+
 # ocr()
 # extrator()
 # renomeia()
