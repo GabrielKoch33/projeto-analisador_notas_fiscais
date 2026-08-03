@@ -1,11 +1,11 @@
 class Nota:
-      
+
     # ------ CONSTRUTOR ------#
     def __init__(self, arquivo_original):
 
         self.arquivo_original = arquivo_original # Nome do arquivo 'nota-compras.pdf'
 
-        self.tipo = arquivo_original.suffix # Extensão '.pdf', '.jpg' ou '.jpeg'
+        self.tipo = self.arquivo_original.suffix.lower()  # Extensão '.pdf', '.jpg' ou '.jpeg'
 
         # Adicionados pelo leitor de arquivo
         self.texto_ocr        = ""  # Texto extraído do OCR

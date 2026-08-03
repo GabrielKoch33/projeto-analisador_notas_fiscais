@@ -17,10 +17,10 @@ Não renomeia.
 
 Apenas encontra arquivos.
 """
-from pathlib import Path 
-from classes.nota import Nota
-from leitor_pdf import leitor_pdf
-from leitor_img import leitor_img
+from pathlib import Path
+from core.classes.nota import Nota
+from core.leitor_pdf import leitor_pdf
+from core.leitor_img import leitor_img
 
 
 def localiza_arquivos(diretorio: str) -> object:
@@ -51,19 +51,22 @@ def localiza_arquivos(diretorio: str) -> object:
 
         if not arquivo.is_file():
             continue
-
+ 
         yield Nota(arquivo)
 
 if __name__ == '__main__':
+
     diretorio_analise = input("Insira o caminho completo da pasta aqui").strip()
-    # Hardcode = r"C:\Users\Terminal\Desktop\pessoal\pastas_nota_projeto\Caixa-1"
-    for nota in localiza_arquivos(diretorio_analise):
+    
+    for nota in localiza_arquivos(
+        r"C:\Users\Terminal\Desktop\pessoal\pastas_nota_projeto\Caixa-1"
+        ):
+        if nota.tipo == '.pdf':
+            leitor_pdf(nota)
+        elif nota.tipo in {".jpg",".jpeg"}:
+            leitor_img(nota)
 
-        if Nota.tipo == '.pdf':
-            leitor_pdf(Nota)
-        elif Nota.tipo in {".jpg",".jpeg"}:
-            leitor_img(Nota)
-
-        # ocr()
-        # extrator()
-        # renomeia()
+# ocr()
+# extrator()
+# renomeia()
+# Hardcode = r"C:\Users\Terminal\Desktop\pessoal\pastas_nota_projeto\Caixa-1"

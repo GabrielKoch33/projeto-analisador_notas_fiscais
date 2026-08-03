@@ -1,6 +1,6 @@
 import pymupdf
 from PIL import Image
-from classes.nota import Nota
+from core.classes.nota import Nota
 
 def leitor_pdf(objeto_nota: Nota) -> Nota:
     """
@@ -15,6 +15,7 @@ def leitor_pdf(objeto_nota: Nota) -> Nota:
         raise TypeError("[ERRO] O Arquivo não é do tipo PDF")
 
     # Abre o PDF
+    print('Teste')
     with pymupdf.open(objeto_nota.arquivo_original) as pdf:
         # pdf é um objeto da classe Document, o qual contem todas as páginas do arquivo original
         for index_pagina in range(pdf.page_count):
